@@ -3,15 +3,16 @@ import ReactDOM from "react-dom";
 
 import "./styles.css";
 import { array } from "prop-types";
+import Proptypes from "prop-types";
 
 function App() {
   return (
     <div className="App">
-      <Tail number={1}>
+      <Head number={1}>
         <h1>Hello CodeSandbox</h1>
         <h2>Start editing to see some magic happen!</h2>
         <h3>Good shit</h3>
-      </Tail>
+      </Head>
     </div>
   );
 }
@@ -29,7 +30,8 @@ var LastChildOnly = ({ children }) => {
 var Head = ({ number, children }) => {
   var childArray = React.Children.toArray(children);
 
-  var firstNumbers = new Array();
+  //[] is the same as new Array
+  var firstNumbers = [];
 
   for (var a = 0; a < number; a++) {
     firstNumbers[a] = childArray[a];
@@ -47,6 +49,14 @@ var Tail = ({ number, children }) => {
     lastNumbers[a] = childArray[a];
   }
   return <div>{lastNumbers}</div>;
+};
+
+Head.propTypes = {
+  number: Proptypes.number.isRequired
+};
+
+Tail.propTypes = {
+  number: Proptypes.number.isRequired
 };
 const rootElement = document.getElementById("root");
 ReactDOM.render(<App />, rootElement);
