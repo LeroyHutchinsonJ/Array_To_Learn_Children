@@ -2,15 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import "./styles.css";
+import { array } from "prop-types";
 
 function App() {
   return (
     <div className="App">
-      <Head number={1}>
+      <Tail number={1}>
         <h1>Hello CodeSandbox</h1>
         <h2>Start editing to see some magic happen!</h2>
         <h3>Good shit</h3>
-      </Head>
+      </Tail>
     </div>
   );
 }
@@ -35,6 +36,17 @@ var Head = ({ number, children }) => {
   }
 
   return <div>{firstNumbers}</div>;
+};
+
+var Tail = ({ number, children }) => {
+  var childArray = React.Children.toArray(children);
+
+  var lastNumbers = new Array();
+
+  for (var a = childArray.length - 1; a > 0 && number > 0; a-- && number--) {
+    lastNumbers[a] = childArray[a];
+  }
+  return <div>{lastNumbers}</div>;
 };
 const rootElement = document.getElementById("root");
 ReactDOM.render(<App />, rootElement);
